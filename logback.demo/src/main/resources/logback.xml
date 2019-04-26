@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property name="TIME_ZONE" value="GMT"/>
+    <property name="MAX_FILE_SIZE" value="10MB"/>
+    <property name="TIME_PATTERN" value="yyyy-MM-dd HH:mm:ss.SSS"/>
+    <property name="QUEUE_SIZE" value="10"/>
+
+    <!--appender配置日志打印方式-->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!--<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{30} - %msg%n</pattern>-->
+            <pattern>
+                [%level] %date{${TIME_PATTERN}, ${TIME_ZONE}} ${TIME_ZONE} [%thread] [%file:%line] - %msg%n
+            </pattern>
+        </encoder>
+        <!--控制台只打印debug级别以上的日志（info，warn，error）-->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>debug</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="debug-out" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>log/debug/debug.log</file>
+        <append>true</append>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>log/debug/debug_${TIME_ZONE}_%i.log</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>10</maxIndex>
+        </rollingPolicy>
+
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <!--日志文件大小限制，超过时，生成新文件-->
+            <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+        </triggeringPolicy>
+
+        <encoder>
+            <pattern>
+                %date{${TIME_PATTERN}, ${TIME_ZONE}} ${TIME_ZONE} [%thread] [%file:%line] - %msg%n
+            </pattern>
+        </encoder>
+
+        <filter class="ch.qos.logback.classic.filter.LevelFilter"><!--只打印debug日志-->
+            <level>debug</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="info-out" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>log/info/info.log</file>
+        <append>true</append>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>log/info/info_${TIME_ZONE}_%i.log</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>10</maxIndex>
+        </rollingPolicy>
+
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <!--日志文件大小限制，超过时，生成新文件-->
+            <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+        </triggeringPolicy>
+
+        <encoder>
+            <pattern>
+                %date{${TIME_PATTERN}, ${TIME_ZONE}} ${TIME_ZONE} [%thread] [%file:%line] - %msg%n
+            </pattern>
+        </encoder>
+
+        <filter class="ch.qos.logback.classic.filter.LevelFilter"><!--只打印info日志-->
+            <level>info</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="warn-out" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>log/warn/warn.log</file>
+        <append>true</append>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>log/warn/warn_${TIME_ZONE}_%i.log</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>10</maxIndex>
+        </rollingPolicy>
+
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <!--日志文件大小限制，超过时，生成新文件-->
+            <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+        </triggeringPolicy>
+
+        <encoder>
+            <pattern>
+                %date{${TIME_PATTERN}, ${TIME_ZONE}} ${TIME_ZONE} [%thread] [%file:%line] - %msg%n
+            </pattern>
+        </encoder>
+
+        <filter class="ch.qos.logback.classic.filter.LevelFilter"><!--只打印warn日志-->
+            <level>warn</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="error-out" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>log/error/error.log</file>
+        <append>true</append>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>log/error/error_${TIME_ZONE}_%i.log</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>10</maxIndex>
+        </rollingPolicy>
+
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <!--日志文件大小限制，超过时，生成新文件-->
+            <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+        </triggeringPolicy>
+
+        <encoder>
+            <pattern>
+                %date{${TIME_PATTERN}, ${TIME_ZONE}} ${TIME_ZONE} [%thread] [%file:%line] - %msg%n
+            </pattern>
+        </encoder>
+
+        <filter class="ch.qos.logback.classic.filter.LevelFilter"><!--只打印error日志-->
+            <level>error</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!--配置根日志-->
+    <root level="DEBUG">
+        <appender-ref ref="console"/>
+        <appender-ref ref="debug-out"/>
+        <appender-ref ref="info-out"/>
+        <appender-ref ref="warn-out"/>
+        <appender-ref ref="error-out"/>
+    </root>
+</configuration>
