@@ -6,7 +6,7 @@
 
     <groupId>com.logdemo</groupId>
     <artifactId>com.logdemo</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>logdemo.parent</name>
     <description>logdemo</description>
@@ -22,9 +22,9 @@
         <!-- 文件拷贝时的编码 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
+        <!-- jdk version -->
         <java.version>1.8</java.version>
-
+        <!-- slf4j version -->
         <org.slf4j.version>1.7.25</org.slf4j.version>
     </properties>
 
