@@ -6,7 +6,7 @@
 
     <groupId>com.logdemo</groupId>
     <artifactId>com.logdemo</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
     <name>logdemo.parent</name>
     <description>logdemo</description>
@@ -22,14 +22,18 @@
         <!-- 文件拷贝时的编码 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <!-- jdk version -->
         <java.version>1.8</java.version>
-        <!-- slf4j version -->
-        <org.slf4j.version>1.7.25</org.slf4j.version>
     </properties>
 
     <build>
         <plugins>
+            <!-- 修改多项目版本的插件 -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+
             <!--maven编译插件-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
