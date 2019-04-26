@@ -13,7 +13,7 @@
 
 ## 修改多模块下的版本号 ##
 1. 修改parent的pom.xml的版本号，如1.0.0
-2. 执行命令  <font color=Tomato size=4>mvn -N versions:update-child-modules</font>	执行成功后各个子模块中的版本号统一会变成1.0.0
+2. 执行命令  **mvn -N versions:update-child-modules**	执行成功后各个子模块中的版本号统一会变成1.0.0
 3. 使用该功能必须在parent的pom里添加**versions-maven-plugin插件**
 4. 
 
