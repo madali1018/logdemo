@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+    <appender name="myConsole" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{MM-dd HH:mm:ss SSS\} %-5p] [%t] %c{3\} [%X{trace__id}] - %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="levelMin" value="debug"/>
+            <param name="levelMax" value="off"/>
+            <param name="AcceptOnMatch" value="true"/>
+        </filter>
+    </appender>
+
+    <appender name="activexAppender" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="log/log1.log"/>
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{MM-dd HH:mm:ss SSS\} %-5p] [%t] %c{3\} [%X{trace__id}] - %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- 自定义指定类的输出路径：SpecialLogPathDemo类的日志单独打印到log/SpecialLogPathDemo.log里 -->
+    <appender name="SpecialLogPathDemo-log" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="log/SpecialLogPathDemo.log"/>
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{MM-dd HH:mm:ss SSS\} %-5p] [%t] %c{3\} [%X{trace__id}] - %m%n"/>
+        </layout>
+    </appender>
+    <logger name="demo.SpecialLogPathDemo" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="SpecialLogPathDemo-log"/>
+    </logger>
+
+    <root>
+        <priority value="INFO"/>
+        <appender-ref ref="myConsole"/>
+        <appender-ref ref="activexAppender"/>
+    </root>
+
+</log4j:configuration>
