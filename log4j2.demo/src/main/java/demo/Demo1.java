@@ -15,6 +15,8 @@ public class Demo1 {
         LOGGER.info("log4j2测试-info");
         LOGGER.warn("log4j2测试-warn");
         LOGGER.error("log4j2测试-error");
+
+        LOGGER.info("id,name:\t{}\t{}", 1, "房");
     }
 
 }
